@@ -1,45 +1,121 @@
-let choice = "rock";
+// function practice:
+// function favoriteAnimal(animal) {
+//     return animal + "is my favorite animal!"
+// }
+// console.log(favoriteAnimal('chicken'))
+
+//--------------------------------------------------------
+
+const choices = ["rock", "paper", "scissors"];
 function getComputerChoice() {
-    // either return rock, paper, or scissors
-    //code block to be executed: 
+    // return choice + " " + "beats paper"
 
-    if (choice === "rock") {
-        console.log("rock");
-    } else if (choice === "paper") {
-        console.log("paper");
-    } else {
+    return choices[Math.floor(Math.random() * 3)]
+}
+console.log(getComputerChoice());
 
-        console.log("scissors");
+
+// either return rock, paper, or scissors
+
+//     function random(number) {
+//         return Math.floor(Math.random() * number);
+//     }
+// }
+// console.log(getComputerChoice(choice));
+
+
+function checkWinner(playerSelection, computerSelection) {
+    //write code here
+    if (playerSelection == computerSelection) {
+        return "It's a tie";
+    }
+    else if (
+        (playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper") ||
+        (playerSelection == "paper" && computerSelection == "rock")
+    ) {
+        return "Player";
+    }
+    else {
+        return "Computer";
     }
 }
-getComputerChoice();
 
+function playRound(playerSelection, computerSelection) {
+    //write code here
+    const result = checkWinner(playerSelection, computerSelection);
+    if (result == "Tie") {
+        return "It's a tie!"
+    }
+    else if (result == "Player") {
+        return `You Win!${playerSelection} beats ${computerSelection}`
 
-//write function that plays single round of Rock paper Scissors.
-//should take 2 parameters (parameter 1, parameter2);
-//declare variable first 
-function singleRound(playerSelection, computerSelection) {
-    // code to be executed (set of instructions):
+    }
+    else {
+        return `You lose! ${computerSelection} beats ${playerSelection}`
+    }
 
-    //return a string that declares a winner of the round.. 
-    return "Winner! Rock beats scissors"
 }
-//playSelection make a choice
-const playerSelection = "scissors";
 
-
-// computerSelection makes a choice
-//*function expression:functions stored in variable*
+const playerSelection = "rock";
 const computerSelection = getComputerChoice();
+// return instead of console .log
+console.log(playRound(playerSelection, computerSelection));
 
 
-//call function (function expression invocation):
-//console.log(variableName(parameter1, parameter2));
-console.log(singleRound(playerSelection, computerSelection));
+// ------------------------------------------------------
+function getPlayerChoice() {
+    let validatedInput = false;
+    while (validatedInput == false) {
+        const choice = prompt("Rock Paper Scissors");
+        if (choice == null) {
+            continue;
+        }
+        const choiceInLower = choice.toLocaleLowerCase();
+        if (choices.includes(choiceInLower)) {
+            validatedInput = true;
+            return choiceInLower;
+        }
+    }
+}
 
 
 
-// function game() {
-//code block to be executed:
-//* use ^ previous function INSIDE of this
+function playGame() {
+    console.log("welcome!")
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    console.log("Game Over");
+}
+
+playGame();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function playRound(playerSelection, computerSelection) {
+//     return "Winner! Rock beats scissors"
 // }
+// const playerSelection = "scissors";
+
+// const computerSelection = getComputerChoice();
+
+// console.log(playRound(playerSelection, computerSelection));
+
